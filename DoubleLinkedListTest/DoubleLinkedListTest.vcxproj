@@ -33,6 +33,8 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClInclude Include="..\cpp-templates-solution\DoubleLinkedList.h" />
+    <ClInclude Include="..\cpp-templates-solution\Stack.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
