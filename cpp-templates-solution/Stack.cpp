@@ -1,12 +1,11 @@
 #include "Stack.h"
 
-
-
-Stack::Stack()
-{
+template <class T>
+void Stack<T>::push(T const& element) {
+	stack.push_
 }
 
+template <class T>
+void popLast() {
 
-Stack::~Stack()
-{
 }
