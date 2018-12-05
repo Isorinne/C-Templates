@@ -1,7 +1,10 @@
 #include <iostream>
 
+using std::cout;
+using std::endl;
+
 void main() {
-	std::cout << "test" << std::endl;
-	std::cout << "test" << std::endl;
-	std::cout << "test" << std::endl;
+	cout << "test" << endl;
+	cout << "test" << endl;
+	cout << "test" << endl;
 }
