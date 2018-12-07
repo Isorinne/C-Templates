@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "../cpp-templates-solution/Stack.h"
+#include "../cpp-templates-solution/ClassStuff.h"
 
 TEST(TestCaseName, TestName) {
   EXPECT_EQ(1, 1);
@@ -62,4 +63,124 @@ TEST(Stack_Test, Stack_Removes_From_Top_To_Bot_String) {
 		result = stringStack.top();
 
 	EXPECT_EQ("hello", result);
+}
+
+TEST(Stack_Test, Stack_Looks_From_Top_To_Bot_ClassDouble) {
+	Stack<Stuff> objectStack;
+	Stuff result;
+
+	Stuff Stuff1;
+	Stuff Stuff2;
+	Stuff Stuff3;
+	Stuff Stuff4;
+
+	objectStack.push(Stuff1);
+	objectStack.push(Stuff2);
+	objectStack.push(Stuff3);
+	objectStack.push(Stuff4);
+	result = objectStack.top();
+
+
+	EXPECT_EQ(Stuff1.doubleStuff, result.doubleStuff);
+}
+
+TEST(Stack_Test, Stack_Looks_From_Top_To_Bot_ClassInt) {
+	Stack<Stuff> objectStack;
+	Stuff result;
+
+	Stuff Stuff1;
+	Stuff Stuff2;
+	Stuff Stuff3;
+	Stuff Stuff4;
+
+	objectStack.push(Stuff1);
+	objectStack.push(Stuff2);
+	objectStack.push(Stuff3);
+	objectStack.push(Stuff4);
+	result = objectStack.top();
+
+
+	EXPECT_EQ(Stuff1.intStuff, result.intStuff);
+}
+
+TEST(Stack_Test, Stack_Looks_From_Top_To_Bot_ClassString) {
+	Stack<Stuff> objectStack;
+	Stuff result;
+
+	Stuff Stuff1;
+	Stuff Stuff2;
+	Stuff Stuff3;
+	Stuff Stuff4;
+
+	objectStack.push(Stuff1);
+	objectStack.push(Stuff2);
+	objectStack.push(Stuff3);
+	objectStack.push(Stuff4);
+	result = objectStack.top();
+
+
+	EXPECT_EQ(Stuff1.stringStuff, result.stringStuff);
+}
+
+TEST(Stack_Test, Stack_Remove_From_Top_To_Bot_ClassDouble) {
+	Stack<Stuff> objectStack;
+	Stuff result;
+
+	Stuff Stuff1;
+	Stuff Stuff2;
+	Stuff Stuff3;
+	Stuff Stuff4;
+
+	objectStack.push(Stuff1);
+	objectStack.push(Stuff2);
+	objectStack.push(Stuff3);
+	objectStack.push(Stuff4);
+	objectStack.pop();
+	objectStack.pop();
+	result = objectStack.top();
+
+
+	EXPECT_EQ(Stuff3.doubleStuff, result.doubleStuff);
+}
+
+TEST(Stack_Test, Stack_Remove_From_Top_To_Bot_ClassInt) {
+	Stack<Stuff> objectStack;
+	Stuff result;
+
+	Stuff Stuff1;
+	Stuff Stuff2;
+	Stuff Stuff3;
+	Stuff Stuff4;
+
+	objectStack.push(Stuff1);
+	objectStack.push(Stuff2);
+	objectStack.push(Stuff3);
+	objectStack.push(Stuff4);
+	objectStack.pop();
+	objectStack.pop();
+	result = objectStack.top();
+
+
+	EXPECT_EQ(Stuff3.intStuff, result.intStuff);
+}
+
+TEST(Stack_Test, Stack_Remove_From_Top_To_Bot_ClassString) {
+	Stack<Stuff> objectStack;
+	Stuff result;
+
+	Stuff Stuff1;
+	Stuff Stuff2;
+	Stuff Stuff3;
+	Stuff Stuff4;
+
+	objectStack.push(Stuff1);
+	objectStack.push(Stuff2);
+	objectStack.push(Stuff3);
+	objectStack.push(Stuff4);
+	objectStack.pop();
+	objectStack.pop();
+	result = objectStack.top();
+
+
+	EXPECT_EQ(Stuff3.stringStuff, result.stringStuff);
 }

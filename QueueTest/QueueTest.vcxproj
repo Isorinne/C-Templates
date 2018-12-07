@@ -33,6 +33,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClInclude Include="..\cpp-templates-solution\ClassStuff.h" />
     <ClInclude Include="..\cpp-templates-solution\Queue.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
