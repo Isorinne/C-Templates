@@ -13,19 +13,16 @@ private:
 
 	Node* head;
 	Node* tail;
+	int size = 0;
 
 
 public:
 
 	List();
-	void push(T newData);
-	void append(T newData);
-	void insert(T newData);
-	void pop(T index);
-	void get(T index);
-	void deleteFront();
-	void deleteLast();
-	void printList();
+	void insert(T newData, int index);
+	void pop(int index);
+	T get(int index);
+	int getSize();
 	~List();
 };
 
@@ -37,96 +34,121 @@ List<T>::List()
 
 }
 
-
-//template<class T>
-//void List<T>::push(T newData)
-//{
-//	Node *newNode = new Node;
-//	newNode->data = newData;
-//	newNode->next = head;
-//	newNode->prev = nullptr;
-//
-//	if (head)
-//		head->prev = newNode;
-//	head = newNode;
-//
-//	if (!tail)
-//		tail = newNode;
-//}
+template<class T>
+T List<T>::get(int index)
+{
+	Node *current = head;
+	int count = 0;
+	while (current != NULL)
+	{
+		if (count == index)
+		{
+			return current->data;
+		}
+		count++;
+		current = current->next;
+	}
+	return 0;
+}
 
 
 template<class T>
-void List<T>::insert(T newData)
+int List<T>::getSize()
 {
-	Node * newNode = new Node;
-
+	int count = 0;
+	Node *node = head;
+	while (node != NULL)
+	{
+		count++;
+		node = node->next;
+	}
+	return count;
 }
 
 
 
 template<class T>
-void List<T>::pop(T index)
+void List<T>::insert(T newData, int index)
 {
+	if (index < 0)
+	{
+		return;
+	}
+	Node *current = head, *prev = NULL;
+	for (int i = 1; i < index; i++)
+	{
+		if (!current)
+		{
+			return;
+		}
 
+		prev = current;
+		current = current->next;
+	}
+
+	Node *newNode = new Node;
+	newNode->data = newData;
+
+	newNode->prev = prev;
+	newNode->next = current;
+
+	if (newNode->prev)
+	{
+		newNode->prev->next = newNode;
+	}
+	else
+	{
+		head = newNode;
+	}
+	if (newNode->next)
+	{
+		newNode->next->prev = newNode;
+	}
+	else
+	{
+		tail = newNode;
+	}
 }
+
 
 
 template<class T>
-void List<T>::get(T index)
+void List<T>::pop(int index)
 {
-
+	Node *deleteNode = NULL, *current = head;
+	if (!head)
+	{
+		return;
+	}
+	else if (index == 1)
+	{
+		head = current->next;
+		head->prev = NULL;
+		return;
+	}
+	else if (index > getSize() || index <= 0)
+	{
+		return;
+	}
+	else
+	{
+		for (int i = 1; i < index; i++)
+		{
+			deleteNode = current;
+			current = current->next;
+		}
+		if (index == getSize())
+		{
+			deleteNode->next = current->next;
+			delete current;
+			return;
+		}
+		deleteNode->next = current->next;
+		current->next->prev = deleteNode;
+		delete current;
+	}
 }
 
-
-//template<class T>
-//void List<T>::append(T newData)
-//{
-//	Node *newNode = new Node;
-//	newNode->data = newData;
-//	newNode->next = nullptr;
-//	newNode->prev = tail;
-//
-//	if (!head)
-//		head = newNode;
-//
-//	if (tail)
-//		tail->next = newNode;
-//	tail = newNode;
-//}
-//
-//template<class T>
-//void List<T>::deleteFront()
-//{
-//	Node * deleteNode = head;
-//	head = head->next;
-//	head->prev = nullptr;
-//	delete(deleteNode);
-//}
-//
-//template<class T>
-//void List<T>::deleteLast()
-//{
-//	Node * deleteNode = tail;
-//	while (deleteNode->next != nullptr)
-//	{
-//		deleteNode = deleteNode->next;
-//	}
-//	tail->prev = deleteNode->prev;
-//	tail->prev->next = nullptr;
-//	delete(deleteNode);
-//}
-//
-//
-//template<class T>
-//void List<T>::printList()
-//{
-//	Node * tempHead = head;
-//	while (tempHead != nullptr)
-//	{
-//		std::cout << tempHead->data << std::endl;
-//		tempHead = tempHead->next;
-//	}
-//}
 
 template<class T>
 List<T>::~List()
