@@ -1,99 +1,112 @@
-#pragma once
+#include <iostream>
 
 template<class T>
-class LinkedList
-{
+class LinkedList {
+
 private:
 
-	template<class T>
 	struct Node {
 		T data;
-		Node<T> *next;
+		Node * next;
 	};
 
-	template<class T>
-	struct List {
-		Node<T> *head;
-	};
-	
+	Node * head;
+	int size;
 
 public:
-	LinkedList();
-	~LinkedList();
 
-	void push(T data);
-	void append();
-	void insert();
-	void reverse();
-	void push();
-	void pop();
-	void popLast();
-	void popFirst();
-	void printList();
-	int getLength();
+	LinkedList() {
+		size = 0;
+		head = nullptr;
+	}
+	 
+	~LinkedList<T>() {
+		Node * current_node = nullptr;
+		while (head->next != nullptr) {
+			current_node = head->next;
+			head->next = head->next->next;
+			delete(current_node);
+		}
+		delete(head);
+	}
+
+
+	T get_data(int index) {
+		if (head == nullptr or size < index + 1) return 0;
+		if (index == 0) return head->data;
+		Node * previous_node = new Node;
+		Node * current_node = head;
+		for (int i = 0; i < index; i++) {
+			previous_node = current_node;
+			current_node = current_node->next;
+		}
+		return current_node->data;
+	}
 	
+	int get_size() {
+		return size;
+	}
+
+	void insert(int index, T data) {
+		if (size < index + 1) return;
+		if (head == nullptr or index == 0) {
+			Node * new_head = new Node;
+			new_head->data = data;
+			new_head->next = head;
+			head = new_head;
+			size++;
+			return;
+		}
+		if (size == index + 1) {
+			Node * last_node = head;
+			while (last_node->next != nullptr)
+				last_node = last_node->next;
+			Node * new_last_node = new Node;
+			new_last_node->data = data;
+			new_last_node->next = nullptr;
+			last_node->next = new_last_node;
+			size++;
+			return;
+		}
+		Node * previous_node = new Node;
+		Node * current_node = head;
+		for (int i = 0; i < index; i++) {
+			previous_node = current_node;
+			current_node = current_node->next;
+		}
+		Node * new_node = new Node;
+		new_node->data = data;
+		previous_node->next = new_node;
+		new_node->next = current_node;
+		size++;
+	}
+	 
+	void pop(int index) {
+		if (head == nullptr) return;
+		if (size < index + 1) return;
+		if (head == nullptr or index == 0) {
+			Node * second_last_node = head;
+			while (second_last_node->next->next != nullptr)
+				second_last_node = second_last_node->next;
+			delete(second_last_node->next);
+			second_last_node->next = nullptr;
+			size--;
+			return;
+		}
+		Node * node_to_pop = head;
+		if (size == index + 1) {
+			head = head->next;
+			delete(node_to_pop);
+			size--; 
+			return;
+		}
+		Node * previous_node = new Node;
+		for (int i = 0; i < index; i++) {
+			previous_node = node_to_pop;
+			node_to_pop = node_to_pop->next;
+		}
+		previous_node->next = previous_node->next->next;
+		delete(node_to_pop);
+		size--;
+	}
 };
-
-
-
-template <class T>
-LinkedList<class T>::LinkedList() {
-
-}
-
-template <class T>
-LinkedList<class T>::~LinkedList() {
-
-}
-
-
-template <class T>
-void LinkedList<T>::push(T data) {
-	Node<T>* temp_head = new Node<T>;
-	temp_head->data = data;
-
-}
-
-template <class T>
-void LinkedList<T>::append() {
-
-}
-
-template <class T>
-void LinkedList<T>::insert() {
-
-}
-
-template <class T>
-void LinkedList<T>::reverse() {
-
-}
-
-template <class T>
-void LinkedList<T>::push() {
-
-}
-
-template <class T>
-void LinkedList<T>::pop() {
-
-}
-template <class T>
-void LinkedList<T>::popLast() {
-
-}
-
-template <class T>
-void LinkedList<T>::popFirst() {
-
-}
-
-template <class T>
-void LinkedList<T>::printList() {
-
-}
-
-template <class T>
-int LinkedList<T>::getLength() {
-
-}
