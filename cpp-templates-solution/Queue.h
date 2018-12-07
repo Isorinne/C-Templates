@@ -10,7 +10,7 @@ using namespace std;
 template <class T>
 class Queue {
 private:
-	vector<T> queue;
+	std::vector<T> queue;
 
 public:
 	void push(T const&);
@@ -30,7 +30,7 @@ void Queue<T>::push(T const& element) {
 template <class T>
 void Queue<T>::pop() {
 	if (queue.empty()) {
-		throw out_of_range("Stack<T>::pop(): empty stack");
+		throw out_of_range("Queue<T>::pop(): empty queue");
 	}
 	assert(!queue.empty());
 	queue.erase(queue.begin());
@@ -39,7 +39,7 @@ void Queue<T>::pop() {
 template <class T>
 T Queue<T>::bot() const {
 	if (queue.empty()) {
-		throw out_of_range("Stack<T>::top(): empty stack");
+		throw out_of_range("Queue<T>::top(): empty queue");
 	}
 	return queue.front();
 }

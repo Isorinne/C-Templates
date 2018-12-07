@@ -33,25 +33,5 @@ int main() {
 		return -1;
 	}
 	//Stack
-	try {
-		Stack<int> intStack;
-		Stack<string> stringStack;
-
-		intStack.push(745);
-		intStack.push(321214);
-		intStack.push(23114);
-		cout << intStack.top() << endl;
-
-		stringStack.push("hello");
-		stringStack.push("World");
-		stringStack.push("hi");
-		cout << stringStack.top() << std::endl;
-		stringStack.pop();
-		stringStack.pop();
-		cout << stringStack.top() << std::endl;
-	}
-	catch (exception const& ex) {
-		cerr << "Exception: " << ex.what() << endl;
-		return -1;
-	}
+	
 }
