@@ -1,12 +1,8 @@
 #include "pch.h"
 #include "../cpp-templates-solution/LinkedList.h"
 
-TEST(TestCaseName, TestName) {
-	EXPECT_EQ(1, 1);
-	EXPECT_TRUE(true);
-}
 
-TEST(LinkedListTest, Inserting_1_Int_To_List) {
+TEST(LinkedListIntTest, When_Inserting_One_Value_To_List_Data_Is_Valid) {
 	LinkedList<int> intList;
 	int result = 10;
 
@@ -15,17 +11,17 @@ TEST(LinkedListTest, Inserting_1_Int_To_List) {
 	EXPECT_EQ(intList.get_data(0), result);
 }
 
-TEST(LinkedListTest, Inserting_100_Ints_To_List) {
+TEST(LinkedListIntTest, When_Inserting_100_Values_To_List_Data_Is_Valid) {
 	LinkedList<int> intList;
-	int result = 99;
+	int result = 42;
 
 	for (int i = 0; i < 100; i++)
 		intList.insert(i, i);
 
-	EXPECT_EQ(intList.get_data(99), result);
+	EXPECT_EQ(intList.get_data(42), result);
 }
 
-TEST(LinkedListTest, When_Inserting_Size_Follows) {
+TEST(LinkedListIntTest, When_Inserting_Size_Follows) {
 	LinkedList<int> intList;
 	int result = 50;
 
@@ -35,7 +31,7 @@ TEST(LinkedListTest, When_Inserting_Size_Follows) {
 	EXPECT_EQ(intList.get_size(), result);
 }
 
-TEST(LinkedListTest, When_Inserting_And_Popping_Size_Follows) {
+TEST(LinkedListIntTest, When_Inserting_And_Popping_Size_Follows) {
 	LinkedList<int> intList;
 	int result = 5;
 
@@ -46,4 +42,28 @@ TEST(LinkedListTest, When_Inserting_And_Popping_Size_Follows) {
 		intList.pop(0);
 
 	EXPECT_EQ(intList.get_size(), result);
+}
+
+TEST(LinkedListIntTest, When_Popping_Last_In_List_Size_Is_Zero) {
+	LinkedList<int> intList;
+	int result = 0;
+
+	intList.insert(0, 555);
+	intList.pop(0);
+
+	EXPECT_EQ(intList.get_size(), result);
+}
+
+TEST(LinkedListIntTest, When_Popping_Last_In_List_Insert_Still_Works_And_Data_Is_Valid) {
+	LinkedList<int> intList;
+	int result = 42;
+
+	intList.insert(0, 555);
+	intList.pop(0);
+	intList.insert(0, 23);
+	intList.insert(1, 17);
+	intList.insert(2, 5);
+	intList.insert(3, 42);
+
+	EXPECT_EQ(intList.get_data(3), result);
 }
