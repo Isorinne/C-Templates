@@ -19,7 +19,7 @@ private:
 public:
 
 	List();
-	void insert(T newData, int index);
+	void insert(int index, T newData);
 	void pop(int index);
 	T get(int index);
 	int getSize();
@@ -31,7 +31,7 @@ public:
 template<class T>
 List<T>::List()
 {
-
+	head = nullptr;
 }
 
 template<class T>
@@ -39,7 +39,7 @@ T List<T>::get(int index)
 {
 	Node *current = head;
 	int count = 0;
-	while (current != NULL)
+	while (current != nullptr)
 	{
 		if (count == index)
 		{
@@ -55,33 +55,25 @@ T List<T>::get(int index)
 template<class T>
 int List<T>::getSize()
 {
-	int count = 0;
-	Node *node = head;
-	while (node != NULL)
-	{
-		count++;
-		node = node->next;
-	}
-	return count;
+	return size;
 }
 
 
 
 template<class T>
-void List<T>::insert(T newData, int index)
+void List<T>::insert(int index, T newData)
 {
 	if (index < 0)
 	{
 		return;
 	}
-	Node *current = head, *prev = NULL;
+	Node *current = head, *prev = nullptr;
 	for (int i = 1; i < index; i++)
 	{
 		if (!current)
 		{
 			return;
 		}
-
 		prev = current;
 		current = current->next;
 	}
@@ -100,14 +92,7 @@ void List<T>::insert(T newData, int index)
 	{
 		head = newNode;
 	}
-	if (newNode->next)
-	{
-		newNode->next->prev = newNode;
-	}
-	else
-	{
-		tail = newNode;
-	}
+	size++;
 }
 
 
@@ -115,7 +100,7 @@ void List<T>::insert(T newData, int index)
 template<class T>
 void List<T>::pop(int index)
 {
-	Node *deleteNode = NULL, *current = head;
+	Node *deleteNode = nullptr, *current = head;
 	if (!head)
 	{
 		return;
@@ -123,11 +108,13 @@ void List<T>::pop(int index)
 	else if (index == 1)
 	{
 		head = current->next;
-		head->prev = NULL;
+		//head->prev = nullptr;
+		size--;
 		return;
 	}
 	else if (index > getSize() || index <= 0)
 	{
+		size--;
 		return;
 	}
 	else
@@ -141,10 +128,12 @@ void List<T>::pop(int index)
 		{
 			deleteNode->next = current->next;
 			delete current;
+			size--;
 			return;
 		}
 		deleteNode->next = current->next;
 		current->next->prev = deleteNode;
+		size--;
 		delete current;
 	}
 }
