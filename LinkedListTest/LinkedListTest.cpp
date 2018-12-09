@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "../cpp-templates-solution/LinkedList.h"
+#include "../cpp-templates-solution/ClassStuff.h"
 
 class LinkedListIntTest: public :: testing::Test {
 public:
@@ -25,7 +26,7 @@ public:
 	~LinkedListStringTest() {}
 
 	LinkedList<std::string> strList;
-	std::string result, result2, result3, result4, result5;
+	std::string result, result2, result3;
 	int size_result;
 
 	void insStr(int n) {
@@ -260,11 +261,13 @@ TEST_F(LinkedListStringTest, initial_insert_is_size_valid) {
 
 
 TEST_F(LinkedListStringTest, insert_100_is_sample_data_valid) {
-	result = "Nine";
+	result = "Nine", result2 = "Zero", result3 = "Five";
 
 	for (int i = 0; i < 10; i++) insStr(10);
 
 	EXPECT_EQ(strList.get_data(99), result);
+	EXPECT_EQ(strList.get_data(0), result2);
+	EXPECT_EQ(strList.get_data(55), result3);
 }
 
 TEST_F(LinkedListStringTest, insert_100_is_size_valid) {
@@ -337,12 +340,13 @@ TEST_F(LinkedListStringTest, insert_in_middle_of_list_is_size_valid) {
 }
 
 TEST_F(LinkedListStringTest, pop_middle_of_list_is_sample_data_valid) {
-	result = "Five";
+	result = "Five", result2 = "Three";
 
 	insStr(9);
 	strList.pop(4);
 
 	EXPECT_EQ(strList.get_data(4), result);
+	EXPECT_EQ(strList.get_data(3), result2);
 }
 
 TEST_F(LinkedListStringTest, pop_middle_of_list_is_size_valid) {
