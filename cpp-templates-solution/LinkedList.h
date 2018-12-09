@@ -11,16 +11,15 @@ private:
 	};
 
 	Node * head;
-	unsigned int size, i;
+	unsigned int size = 0, i;
 
 public:
 
 	LinkedList() {
-		size = 0;
 		head = nullptr;
 	}
 
-	~LinkedList<T>() {
+	~LinkedList() {
 		Node * curr = nullptr;
 
 		while (head->next != nullptr) {
@@ -37,8 +36,7 @@ public:
 		unsigned int ctr = 0;
 
 		while (temp != nullptr) {
-			if (ctr == index)
-				return temp->data;
+			if (ctr == index) return temp->data;
 
 			ctr++;
 			temp = temp->next;
@@ -46,7 +44,6 @@ public:
 	}
 
 	int length() {
-
 		return size;
 	}
 
@@ -61,8 +58,7 @@ public:
 		}
 
 		else if (size == index + 1) {
-			while (temp->next != nullptr)
-				temp = temp->next;
+			while (temp->next != nullptr) temp = temp->next;
 
 			node->next = nullptr;
 			temp->next = node;
@@ -84,18 +80,12 @@ public:
 	void pop(unsigned int index) {
 		Node * node = head;
 
-		if (size == 0 || size < index + 1)
-			return;
+		if (size == 0 || size < index + 1) return;
 
-		if (size == 1) {
-			size--;
-			return;
-		}
+		else if (size == 1) { size--; return; }
 
 		else if (head->next == nullptr || index == 0) {
-			while (node->next->next != nullptr)
-				node = node->next;
-
+			while (node->next->next != nullptr) node = node->next;
 			delete(node->next);
 			node->next = nullptr;
 		}
@@ -111,7 +101,6 @@ public:
 				temp = node;
 				node = node->next;
 			}
-
 			temp->next = temp->next->next;
 			delete(node);
 		}
