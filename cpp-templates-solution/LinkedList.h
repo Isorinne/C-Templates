@@ -11,7 +11,7 @@ private:
 	};
 
 	Node * head;
-	unsigned int size;
+	unsigned int size, i;
 
 public:
 
@@ -32,8 +32,7 @@ public:
 		delete(head);
 	}
 
-
-	T get(int index) {
+	T get(unsigned int index) {
 		Node * temp = head;
 		unsigned int ctr = 0;
 
@@ -51,7 +50,7 @@ public:
 		return size;
 	}
 
-	void insert(int index, T data) {
+	void insert(unsigned int index, T data) {
 		Node * temp = head;
 		Node * node = new Node;
 		node->data = data;
@@ -71,7 +70,7 @@ public:
 
 		else {
 			Node * prev = new Node;
-			for (int i = 0; i < index; i++) {
+			for (i = 0; i < index; i++) {
 				prev = temp;
 				temp = temp->next;
 			}
@@ -82,18 +81,18 @@ public:
 		size++;
 	}
 
-	void pop(int index) {
+	void pop(unsigned int index) {
 		Node * node = head;
 
-		if (head == nullptr || size < index + 1)
+		if (size == 0 || size < index + 1)
 			return;
 
-		else if (head->next == nullptr || index == 0) {
-			if (size == 1) {
-				size--;
-				return;
-			}
+		if (size == 1) {
+			size--;
+			return;
+		}
 
+		else if (head->next == nullptr || index == 0) {
 			while (node->next->next != nullptr)
 				node = node->next;
 
@@ -108,7 +107,7 @@ public:
 
 		else {
 			Node * temp = new Node;
-			for (int i = 0; i < index; i++) {
+			for (i = 0; i < index; i++) {
 				temp = node;
 				node = node->next;
 			}
