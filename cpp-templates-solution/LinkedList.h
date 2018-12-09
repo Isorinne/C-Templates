@@ -48,33 +48,31 @@ public:
 	}
 
 	void insert(int index, T data) {
-
+		Node * new_node = new Node;
 		if (head == nullptr || index == 0) {
-			Node * new_head = new Node;
-			new_head->data = data;
-			new_head->next = head;
-			head = new_head;
+			Node * new_node = new Node;
+			new_node->data = data;
+			new_node->next = head;
+			head = new_node;
 			size++;
 			return;
 		}
+		Node * current_node = head;
 		if (size == index + 1) {
-			Node * last_node = head;
-			while (last_node->next != nullptr)
-				last_node = last_node->next;
-			Node * new_last_node = new Node;
-			new_last_node->data = data;
-			new_last_node->next = nullptr;
-			last_node->next = new_last_node;
+			while (current_node->next != nullptr)
+				current_node = current_node->next;
+			new_node->data = data;
+			new_node->next = nullptr;
+			current_node->next = new_node;
 			size++;
 			return;
 		}
 		Node * previous_node = new Node;
-		Node * current_node = head;
 		for (int i = 0; i < index; i++) {
 			previous_node = current_node;
 			current_node = current_node->next;
 		}
-		Node * new_node = new Node;
+		
 		new_node->data = data;
 		previous_node->next = new_node;
 		new_node->next = current_node;
