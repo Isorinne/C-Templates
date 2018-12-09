@@ -48,7 +48,6 @@ T List<T>::get(int index)
 		count++;
 		current = current->next;
 	}
-	return 0;
 }
 
 
@@ -68,7 +67,7 @@ void List<T>::insert(int index, T newData)
 		return;
 	}
 	Node *current = head, *prev = nullptr;
-	for (int i = 1; i < index; i++)
+	for (int i = 0; i < index; i++)
 	{
 		if (!current)
 		{
@@ -108,7 +107,6 @@ void List<T>::pop(int index)
 	else if (index == 1)
 	{
 		head = current->next;
-		//head->prev = nullptr;
 		size--;
 		return;
 	}
@@ -119,12 +117,12 @@ void List<T>::pop(int index)
 	}
 	else
 	{
-		for (int i = 1; i < index; i++)
+		for (int i = 0; i < index; i++)
 		{
 			deleteNode = current;
 			current = current->next;
 		}
-		if (index == getSize())
+		if (index == getSize()-1)
 		{
 			deleteNode->next = current->next;
 			delete current;

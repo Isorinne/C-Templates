@@ -1,57 +1,164 @@
 #include "pch.h"
 #include "../cpp-templates-solution/DoubleLinkedList.h"
-//#include "../cpp-templates-solution/ClassStuff.h"
+#include "../cpp-templates-solution/ClassStuff.h"
+#include <string>
 
 TEST(TestCaseName, TestName) {
   EXPECT_EQ(1, 1);
   EXPECT_TRUE(true);
 }
 
-TEST(DoubleLinkedList_Test, Double_Linked_list_add_and_check_size)
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_check_size)
 {
 	int result;
-		List<int> dll;
+		List<int> intDll;
 		for (int i = 0; i < 100; i++)
 		{
-			dll.insert(i, i);
+			intDll.insert(i, i);
 		}
-		result = dll.getSize();
+		result = intDll.getSize();
 	EXPECT_EQ(100, result);
 }
 
-TEST(DoubleLinkedList_Test, Double_Linked_list_add_and_pop)
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_pop)
 {
 	int result;
-	List<int> dll;
-	dll.insert(0, 1);
-	dll.insert(1, 4);
-	dll.insert(2, 7);
-	dll.pop(0);
-	dll.pop(1);
-	result = dll.get(0);
-	EXPECT_EQ(7, result);
+	List<int> intDll;
+	intDll.insert(0, 1);
+	intDll.insert(1, 4);
+	intDll.insert(2, 7);
+	intDll.pop(0);
+	intDll.pop(1);
+	result = intDll.get(0);
+	EXPECT_EQ(4, result);
 }
 
 
-TEST(DoubleLinkedList_Test, Double_Linked_list_add_and_empty_and_add)
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_empty_and_add)
 {
 	int result;
-	List<int> dll;
-	dll.insert(0, 1);
-	dll.insert(1, 4);
-	dll.pop(0);
-	dll.pop(0);
-	dll.insert(0, 7);
-	result = dll.get(0);
+	List<int> intDll;
+	intDll.insert(0, 1);
+	intDll.insert(1, 4);
+	intDll.pop(0);
+	intDll.pop(0);
+	intDll.insert(0, 7);
+	result = intDll.get(0);
 	EXPECT_EQ(7, result);
 }
 
-TEST(DoubleLinkedList_Test, Double_Linked_list_add_and_empty_and_check_size)
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_empty_and_check_size)
 {
 	int result;
-	List<int> dll;
-	dll.insert(0, 1);
-	dll.pop(0);
-	result = dll.getSize();
+	List<int> intDll;
+	intDll.insert(0, 1);
+	intDll.pop(0);
+	result = intDll.getSize();
 	EXPECT_EQ(0, result);
+}
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_check_size)
+{
+	int result;
+	List<std::string> stringDll;
+	for (int i = 0; i < 100; i++)
+	{
+		stringDll.insert(i, "a");
+	}
+	result = stringDll.getSize();
+	EXPECT_EQ(100, result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_check_middle)
+{
+	std::string result = "b";
+	List<std::string> stringDll;
+
+	stringDll.insert(0, "a");
+	stringDll.insert(1, "b");
+	stringDll.insert(2, "c");
+
+	EXPECT_EQ(stringDll.get(1), result);
+}
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_pop_first_and_last)
+{
+	std::string result = "b";
+	List<std::string> stringDll;
+
+	stringDll.insert(0, "a");
+	stringDll.insert(1, "b");
+	stringDll.insert(2, "c");
+	stringDll.pop(0);
+	stringDll.pop(1);
+
+	EXPECT_EQ(stringDll.get(0), result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_check_last)
+{
+	std::string result = "a";
+	List<std::string> stringDll;
+
+	stringDll.insert(0, "a");
+	stringDll.insert(0, "b");
+	stringDll.insert(0, "c");
+
+	EXPECT_EQ(stringDll.get(2), result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_pop_check_if_empty)
+{
+	int result = 0;
+	List<std::string> stringDll;
+
+	stringDll.insert(0, "a");
+	stringDll.pop(0);
+
+	EXPECT_EQ(stringDll.getSize(), result);
+}
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_object_add_and_check_size)
+{
+	int result = 1;
+	List<Stuff> stuffObj;
+	Stuff stuff1;
+	stuffObj.insert(0, stuff1);
+	EXPECT_EQ(stuffObj.getSize(), result);
+}
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_object_add_pop_and_check_size)
+{
+	int result = 1;
+	List<Stuff> stuffObj;
+	Stuff stuff1;
+	Stuff stuff2;
+	Stuff stuff3;
+	stuffObj.insert(0, stuff1);
+	stuffObj.insert(1, stuff2);
+	stuffObj.insert(2, stuff3);
+	stuffObj.pop(0);
+	stuffObj.pop(0);
+	EXPECT_EQ(stuffObj.getSize(), result);
+}
+
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_object_add_pop_add_check_last)
+{
+	std::string result ="Hello";
+	List<Stuff> stuffObj;
+	Stuff stuff1;
+	Stuff stuff2;
+	Stuff stuff3;
+	Stuff stuff4;
+	stuffObj.insert(0, stuff1);
+	stuffObj.insert(1, stuff2);
+	stuffObj.insert(2, stuff3);
+	stuffObj.pop(0);
+	stuffObj.insert(2, stuff3);
+	EXPECT_EQ(stuffObj.get(2).stringStuff, result);
 }
