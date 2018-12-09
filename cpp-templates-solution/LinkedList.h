@@ -11,7 +11,7 @@ private:
 	};
 
 	Node * head;
-	int size;
+	unsigned int size;
 
 public:
 
@@ -33,7 +33,7 @@ public:
 
 	T get(int index) {
 		Node * temp_node = head;
-		int ctr = 0;
+		unsigned int ctr = 0;
 		while (temp_node != nullptr) {
 			if (ctr == index) return temp_node->data;
 			ctr++;
