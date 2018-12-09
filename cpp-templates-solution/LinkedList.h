@@ -54,54 +54,54 @@ public:
 			size++;
 			return;
 		}
-		Node * current_node = head;
+		Node * temp_node = head;
 		if (size == index + 1) {
-			while (current_node->next != nullptr)
-				current_node = current_node->next;
+			while (temp_node->next != nullptr)
+				temp_node = temp_node->next;
 			new_node->next = nullptr;
-			current_node->next = new_node;
+			temp_node->next = new_node;
 			size++;
 			return;
 		}
 		Node * previous_node = new Node;
 		for (int i = 0; i < index; i++) {
-			previous_node = current_node;
-			current_node = current_node->next;
+			previous_node = temp_node;
+			temp_node = temp_node->next;
 		}
 		previous_node->next = new_node;
-		new_node->next = current_node;
+		new_node->next = temp_node;
 		size++;
 	}
 
 	void pop(int index) {
 		if (head == nullptr || size < index + 1) return;
-		Node * current_node = head;
+		Node * node = head;
 		if (head->next == nullptr || index == 0) {
 			if (size == 1) {
 				size--;
 				return;
 			}
-			while (current_node->next->next != nullptr)
-				current_node = current_node->next;
+			while (node->next->next != nullptr)
+				node = node->next;
 
-			delete(current_node->next);
-			current_node->next = nullptr;
+			delete(node->next);
+			node->next = nullptr;
 			size--;
 			return;
 		}
 		if (size == index + 1) {
 			head = head->next;
-			delete(current_node);
+			delete(node);
 			size--;
 			return;
 		}
 		Node * temp_node = new Node;
 		for (int i = 0; i < index; i++) {
-			temp_node = current_node;
-			current_node = current_node->next;
+			temp_node = node;
+			node = node->next;
 		}
 		temp_node->next = temp_node->next->next;
-		delete(current_node);
+		delete(node);
 		size--;
 	}
 };
