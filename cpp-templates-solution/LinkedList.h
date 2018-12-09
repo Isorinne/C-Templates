@@ -32,7 +32,6 @@ public:
 
 
 	T get(int index) {
-		//if (size == 0) return nullptr;
 		Node * temp_node = head;
 		int ctr = 0;
 		while (temp_node != nullptr) {
@@ -40,7 +39,6 @@ public:
 			ctr++;
 			temp_node = temp_node->next;
 		}
-		//return nullptr;
 	}
 
 	int length() {
@@ -49,9 +47,8 @@ public:
 
 	void insert(int index, T data) {
 		Node * new_node = new Node;
+		new_node->data = data;
 		if (head == nullptr || index == 0) {
-			Node * new_node = new Node;
-			new_node->data = data;
 			new_node->next = head;
 			head = new_node;
 			size++;
@@ -61,7 +58,6 @@ public:
 		if (size == index + 1) {
 			while (current_node->next != nullptr)
 				current_node = current_node->next;
-			new_node->data = data;
 			new_node->next = nullptr;
 			current_node->next = new_node;
 			size++;
@@ -72,43 +68,40 @@ public:
 			previous_node = current_node;
 			current_node = current_node->next;
 		}
-		
-		new_node->data = data;
 		previous_node->next = new_node;
 		new_node->next = current_node;
 		size++;
 	}
 
 	void pop(int index) {
-		if (head == nullptr) return;
-		if (size < index + 1) return;
+		if (head == nullptr || size < index + 1) return;
+		Node * current_node = head;
 		if (head->next == nullptr || index == 0) {
 			if (size == 1) {
 				size--;
 				return;
 			}
-			Node * second_last_node = head;
-			while (second_last_node->next->next != nullptr)
-				second_last_node = second_last_node->next;
-			delete(second_last_node->next);
-			second_last_node->next = nullptr;
+			while (current_node->next->next != nullptr)
+				current_node = current_node->next;
+
+			delete(current_node->next);
+			current_node->next = nullptr;
 			size--;
 			return;
 		}
-		Node * node_to_pop = head;
 		if (size == index + 1) {
 			head = head->next;
-			delete(node_to_pop);
+			delete(current_node);
 			size--;
 			return;
 		}
-		Node * previous_node = new Node;
+		Node * temp_node = new Node;
 		for (int i = 0; i < index; i++) {
-			previous_node = node_to_pop;
-			node_to_pop = node_to_pop->next;
+			temp_node = current_node;
+			current_node = current_node->next;
 		}
-		previous_node->next = previous_node->next->next;
-		delete(node_to_pop);
+		temp_node->next = temp_node->next->next;
+		delete(current_node);
 		size--;
 	}
 };
