@@ -32,7 +32,7 @@ public:
 
 
 	T get(int index) {
-		if (size == 0) return 0;
+		//if (size == 0) return nullptr;
 		Node * temp_node = head;
 		int ctr = 0;
 		while (temp_node != nullptr) {
@@ -40,7 +40,7 @@ public:
 			ctr++;
 			temp_node = temp_node->next;
 		}
-		return 0;
+		//return nullptr;
 	}
 
 	int length() {

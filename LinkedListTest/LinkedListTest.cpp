@@ -127,9 +127,11 @@ public:
 	void TearDown() {}
 	~LinkedListObjectTest() {}
 
+	int size_result;
+
 	LinkedList<Stuff> objList;
 	Stuff result;
-	int size_result;
+	
 	Stuff obj, obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9;
 	
 	void insObj(int n) {
@@ -462,4 +464,32 @@ TEST_F(LinkedListStringTest, pop_middle_of_list_is_size_valid) {
 	strList.pop(4);
 
 	EXPECT_EQ(strList.length(), size_result);
+}
+
+/*******************************************************************************************************************************************/
+
+TEST_F(LinkedListObjectTest, initial_insert_is_obj_int_valid) {
+	objList.insert(0, obj);
+
+	EXPECT_EQ((objList.get(0)).intStuff, result.intStuff);
+}
+
+TEST_F(LinkedListObjectTest, initial_insert_is_obj_double_valid) {
+	objList.insert(0, obj);
+
+	EXPECT_EQ((objList.get(0)).doubleStuff, result.doubleStuff);
+}
+
+TEST_F(LinkedListObjectTest, initial_insert_is_obj_string_valid) {
+	objList.insert(0, obj);
+
+	EXPECT_EQ((objList.get(0)).stringStuff, result.stringStuff);
+}
+
+TEST_F(LinkedListObjectTest, initial_insert_is_size_valid) {
+	size_result = 1;
+
+	objList.insert(0, obj);
+
+	EXPECT_EQ(objList.length(), size_result);
 }
