@@ -120,13 +120,15 @@ public:
 	}
 };
 
+/*******************************************************************************************************************************************/
+
 TEST_F(LinkedListIntTest, intial_insert_is_data_valid) {
 	
 	result = 10;
 
 	intList.insert(0, 10);
 
-	EXPECT_EQ(intList.get_data(0), result);
+	EXPECT_EQ(intList.get(0), result);
 }
 
 TEST_F(LinkedListIntTest, initial_insert_is_size_valid) {
@@ -135,7 +137,7 @@ TEST_F(LinkedListIntTest, initial_insert_is_size_valid) {
 
 	intList.insert(0, 10);
 
-	EXPECT_EQ(intList.get_size(), result);
+	EXPECT_EQ(intList.length(), result);
 }
 
 
@@ -144,11 +146,11 @@ TEST_F(LinkedListIntTest, insert_100_is_sample_data_valid) {
 
 	insInt(100);
 
-	EXPECT_EQ(intList.get_data(1), result);
-	EXPECT_EQ(intList.get_data(23), result2);
-	EXPECT_EQ(intList.get_data(42), result3);
-	EXPECT_EQ(intList.get_data(76), result4);
-	EXPECT_EQ(intList.get_data(99), result5);
+	EXPECT_EQ(intList.get(1), result);
+	EXPECT_EQ(intList.get(23), result2);
+	EXPECT_EQ(intList.get(42), result3);
+	EXPECT_EQ(intList.get(76), result4);
+	EXPECT_EQ(intList.get(99), result5);
 
 }
 
@@ -157,7 +159,7 @@ TEST_F(LinkedListIntTest, insert_100_is_size_valid) {
 
 	insInt(100);
 
-	EXPECT_EQ(intList.get_size(), result);
+	EXPECT_EQ(intList.length(), result);
 }
 
 TEST_F(LinkedListIntTest, when_pop_size_decrease) {
@@ -168,7 +170,7 @@ TEST_F(LinkedListIntTest, when_pop_size_decrease) {
 	for (int i = 0; i < 45; i++)
 		intList.pop(0);
 
-	EXPECT_EQ(intList.get_size(), result);
+	EXPECT_EQ(intList.length(), result);
 }
 
 TEST_F(LinkedListIntTest, size_is_zero_when_popping_last_value_in_list) {
@@ -177,7 +179,7 @@ TEST_F(LinkedListIntTest, size_is_zero_when_popping_last_value_in_list) {
 	insInt(1);
 	intList.pop(0);
 
-	EXPECT_EQ(intList.get_size(), result);
+	EXPECT_EQ(intList.length(), result);
 }
 
 TEST_F(LinkedListIntTest, pop_last_insert_again_is_data_valid) {
@@ -187,7 +189,7 @@ TEST_F(LinkedListIntTest, pop_last_insert_again_is_data_valid) {
 	intList.pop(0);
 	insInt(4);
 
-	EXPECT_EQ(intList.get_data(3), result);
+	EXPECT_EQ(intList.get(3), result);
 }
 
 TEST_F(LinkedListIntTest, pop_last_insert_again_is_size_valid) {
@@ -197,7 +199,7 @@ TEST_F(LinkedListIntTest, pop_last_insert_again_is_size_valid) {
 	intList.pop(0);
 	insInt(4);
 
-	EXPECT_EQ(intList.get_size(), result);
+	EXPECT_EQ(intList.length(), result);
 }
 
 TEST_F(LinkedListIntTest, insert_in_middle_of_list_is_sample_data_valid) {
@@ -206,9 +208,9 @@ TEST_F(LinkedListIntTest, insert_in_middle_of_list_is_sample_data_valid) {
 	insInt(10);
 	intList.insert(4, 1024);
 
-	EXPECT_EQ(intList.get_data(0), result);
-	EXPECT_EQ(intList.get_data(4), result2);
-	EXPECT_EQ(intList.get_data(10), result3);
+	EXPECT_EQ(intList.get(0), result);
+	EXPECT_EQ(intList.get(4), result2);
+	EXPECT_EQ(intList.get(10), result3);
 }
 
 TEST_F(LinkedListIntTest, insert_in_middle_of_list_is_size_valid) {
@@ -217,7 +219,7 @@ TEST_F(LinkedListIntTest, insert_in_middle_of_list_is_size_valid) {
 	insInt(10);
 	intList.insert(4, 1024);
 
-	EXPECT_EQ(intList.get_size(), result);
+	EXPECT_EQ(intList.length(), result);
 }
 
 TEST_F(LinkedListIntTest, pop_middle_of_list_is_sample_data_valid) {
@@ -226,10 +228,10 @@ TEST_F(LinkedListIntTest, pop_middle_of_list_is_sample_data_valid) {
 	insInt(11);
 	intList.pop(5);
 
-	EXPECT_EQ(intList.get_data(0), result);
-	EXPECT_EQ(intList.get_data(4), result2);
-	EXPECT_EQ(intList.get_data(5), result3);
-	EXPECT_EQ(intList.get_data(9), result4);
+	EXPECT_EQ(intList.get(0), result);
+	EXPECT_EQ(intList.get(4), result2);
+	EXPECT_EQ(intList.get(5), result3);
+	EXPECT_EQ(intList.get(9), result4);
 }
 
 TEST_F(LinkedListIntTest, pop_middle_of_list_is_size_valid) {
@@ -238,7 +240,7 @@ TEST_F(LinkedListIntTest, pop_middle_of_list_is_size_valid) {
 	insInt(11);
 	intList.pop(5);
 
-	EXPECT_EQ(intList.get_size(), result);
+	EXPECT_EQ(intList.length(), result);
 }
 
 /*******************************************************************************************************************************************/
@@ -248,7 +250,7 @@ TEST_F(LinkedListStringTest, initial_insert_is_data_valid) {
 
 	strList.insert(0, "Hello World!");
 
-	EXPECT_EQ(strList.get_data(0), result);
+	EXPECT_EQ(strList.get(0), result);
 }
 
 TEST_F(LinkedListStringTest, initial_insert_is_size_valid) {
@@ -256,7 +258,7 @@ TEST_F(LinkedListStringTest, initial_insert_is_size_valid) {
 
 	strList.insert(0, "Hello World!");
 
-	EXPECT_EQ(strList.get_size(), size_result);
+	EXPECT_EQ(strList.length(), size_result);
 }
 
 
@@ -265,9 +267,9 @@ TEST_F(LinkedListStringTest, insert_100_is_sample_data_valid) {
 
 	for (int i = 0; i < 10; i++) insStr(10);
 
-	EXPECT_EQ(strList.get_data(99), result);
-	EXPECT_EQ(strList.get_data(0), result2);
-	EXPECT_EQ(strList.get_data(55), result3);
+	EXPECT_EQ(strList.get(99), result);
+	EXPECT_EQ(strList.get(0), result2);
+	EXPECT_EQ(strList.get(55), result3);
 }
 
 TEST_F(LinkedListStringTest, insert_100_is_size_valid) {
@@ -275,7 +277,7 @@ TEST_F(LinkedListStringTest, insert_100_is_size_valid) {
 
 	for (int i = 0; i < 10; i++) insStr(10);
 	
-	EXPECT_EQ(strList.get_size(), size_result);
+	EXPECT_EQ(strList.length(), size_result);
 }
 
 
@@ -287,7 +289,7 @@ TEST_F(LinkedListStringTest, when_pop_size_decrease) {
 	for (int i = 0; i < 5; i++)
 		strList.pop(0);
 
-	EXPECT_EQ(strList.get_size(), size_result);
+	EXPECT_EQ(strList.length(), size_result);
 }
 
 TEST_F(LinkedListStringTest, size_is_zero_when_popping_last_value_in_list) {
@@ -296,7 +298,7 @@ TEST_F(LinkedListStringTest, size_is_zero_when_popping_last_value_in_list) {
 	insStr(1);
 	strList.pop(0);
 
-	EXPECT_EQ(strList.get_size(), size_result);
+	EXPECT_EQ(strList.length(), size_result);
 }
 
 TEST_F(LinkedListStringTest, pop_last_insert_again_is_data_valid) {
@@ -306,7 +308,7 @@ TEST_F(LinkedListStringTest, pop_last_insert_again_is_data_valid) {
 	strList.pop(0);
 	insStr(4);
 
-	EXPECT_EQ(strList.get_data(3), result);
+	EXPECT_EQ(strList.get(3), result);
 }
 
 TEST_F(LinkedListStringTest, pop_last_insert_again_is_size_valid) {
@@ -316,7 +318,7 @@ TEST_F(LinkedListStringTest, pop_last_insert_again_is_size_valid) {
 	strList.pop(0);
 	insStr(4);
 
-	EXPECT_EQ(strList.get_size(), size_result);
+	EXPECT_EQ(strList.length(), size_result);
 }
 
 TEST_F(LinkedListStringTest, insert_in_middle_of_list_is_sample_data_valid) {
@@ -325,9 +327,9 @@ TEST_F(LinkedListStringTest, insert_in_middle_of_list_is_sample_data_valid) {
 	insStr(10);
 	strList.insert(4, "Hello World!");
 
-	EXPECT_EQ(strList.get_data(0), result);
-	EXPECT_EQ(strList.get_data(4), result2);
-	EXPECT_EQ(strList.get_data(10), result3);
+	EXPECT_EQ(strList.get(0), result);
+	EXPECT_EQ(strList.get(4), result2);
+	EXPECT_EQ(strList.get(10), result3);
 }
 
 TEST_F(LinkedListStringTest, insert_in_middle_of_list_is_size_valid) {
@@ -336,7 +338,7 @@ TEST_F(LinkedListStringTest, insert_in_middle_of_list_is_size_valid) {
 	insStr(9);
 	strList.insert(4, "Hello World!");
 
-	EXPECT_EQ(strList.get_size(), size_result);
+	EXPECT_EQ(strList.length(), size_result);
 }
 
 TEST_F(LinkedListStringTest, pop_middle_of_list_is_sample_data_valid) {
@@ -345,8 +347,8 @@ TEST_F(LinkedListStringTest, pop_middle_of_list_is_sample_data_valid) {
 	insStr(9);
 	strList.pop(4);
 
-	EXPECT_EQ(strList.get_data(4), result);
-	EXPECT_EQ(strList.get_data(3), result2);
+	EXPECT_EQ(strList.get(4), result);
+	EXPECT_EQ(strList.get(3), result2);
 }
 
 TEST_F(LinkedListStringTest, pop_middle_of_list_is_size_valid) {
@@ -355,5 +357,5 @@ TEST_F(LinkedListStringTest, pop_middle_of_list_is_size_valid) {
 	insStr(9);
 	strList.pop(4);
 
-	EXPECT_EQ(strList.get_size(), size_result);
+	EXPECT_EQ(strList.length(), size_result);
 }

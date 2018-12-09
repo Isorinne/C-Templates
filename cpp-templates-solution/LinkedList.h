@@ -31,19 +31,19 @@ public:
 	}
 
 
-	T get_data(int index) {
-		if (head == nullptr || size < index + 1) return 0;
-		if (index == 0) return head->data;
-		Node * previous_node = new Node;
-		Node * current_node = head;
-		for (int i = 0; i < index; i++) {
-			previous_node = current_node;
-			current_node = current_node->next;
+	T get(int index) {
+		if (size == 0) return 0;
+		Node * temp_node = head;
+		int ctr = 0;
+		while (temp_node != nullptr) {
+			if (ctr == index) return temp_node->data;
+			ctr++;
+			temp_node = temp_node->next;
 		}
-		return current_node->data;
+		return 0;
 	}
 
-	int get_size() {
+	int length() {
 		return size;
 	}
 
