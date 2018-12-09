@@ -477,7 +477,7 @@ TEST_F(LinkedListObjectTest, initial_insert_is_obj_int_valid) {
 TEST_F(LinkedListObjectTest, initial_insert_is_obj_double_valid) {
 	objList.insert(0, obj);
 
-	EXPECT_EQ((objList.get(0)).doubleStuff, result.doubleStuff);
+	EXPECT_DOUBLE_EQ((objList.get(0)).doubleStuff, result.doubleStuff);
 }
 
 TEST_F(LinkedListObjectTest, initial_insert_is_obj_string_valid) {
@@ -490,6 +490,92 @@ TEST_F(LinkedListObjectTest, initial_insert_is_size_valid) {
 	size_result = 1;
 
 	objList.insert(0, obj);
+
+	EXPECT_EQ(objList.length(), size_result);
+}
+
+TEST_F(LinkedListObjectTest, insert_100_is_obj_int_valid) {
+
+	for (int i = 0; i < 10; i++) insObj(10);
+
+	EXPECT_EQ((objList.get(99)).intStuff, result.intStuff);
+}
+
+TEST_F(LinkedListObjectTest, insert_100_is_obj_double_valid) {
+
+	for (int i = 0; i < 10; i++) insObj(10);
+
+	EXPECT_DOUBLE_EQ((objList.get(99)).doubleStuff, result.doubleStuff);
+}
+
+TEST_F(LinkedListObjectTest, insert_100_is_obj_string_valid) {
+
+	for (int i = 0; i < 10; i++) insObj(10);
+
+	EXPECT_EQ((objList.get(99)).stringStuff, result.stringStuff);
+}
+
+TEST_F(LinkedListObjectTest, insert_100_is_size_valid) {
+	size_result = 100;
+
+	for (int i = 0; i < 10; i++) insObj(10);
+
+	EXPECT_EQ(objList.length(), size_result);
+}
+
+TEST_F(LinkedListObjectTest, when_pop_size_decrease) {
+	size_result = 5;
+
+	insObj(10);
+
+	for (int i = 0; i < 5; i++)
+		objList.pop(0);
+
+	EXPECT_EQ(objList.length(), size_result);
+}
+
+TEST_F(LinkedListObjectTest, size_is_zero_when_popping_last_obj_in_list) {
+	size_result = 0;
+
+	insObj(1);
+	objList.pop(0);
+
+	EXPECT_EQ(objList.length(), size_result);
+}
+
+TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_int_valid) {
+
+	insObj(1);
+	objList.pop(0);
+	insObj(4);
+
+	EXPECT_EQ((objList.get(3)).intStuff, result.intStuff);
+}
+
+TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_double_valid) {
+
+	insObj(1);
+	objList.pop(0);
+	insObj(4);
+
+	EXPECT_DOUBLE_EQ((objList.get(3)).doubleStuff, result.doubleStuff);
+}
+
+TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_string_valid) {
+
+	insObj(1);
+	objList.pop(0);
+	insObj(4);
+
+	EXPECT_EQ((objList.get(3)).stringStuff, result.stringStuff);
+}
+
+TEST_F(LinkedListObjectTest, pop_last_insert_again_is_size_valid) {
+	size_result = 4;
+
+	insObj(1);
+	objList.pop(0);
+	insObj(4);
 
 	EXPECT_EQ(objList.length(), size_result);
 }
