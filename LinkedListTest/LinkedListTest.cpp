@@ -120,6 +120,110 @@ public:
 	}
 };
 
+class LinkedListObjectTest : public ::testing::Test {
+public:
+	LinkedListObjectTest() {}
+	void SetUp() {}
+	void TearDown() {}
+	~LinkedListObjectTest() {}
+
+	LinkedList<Stuff> objList;
+	Stuff result;
+	int size_result;
+	Stuff obj, obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9;
+	
+	void insObj(int n) {
+		switch (n) {
+		case 1:
+			objList.insert(0, obj);
+			break;
+
+		case 2:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			break;
+
+		case 3:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			break;
+
+		case 4:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			objList.insert(3, obj3);
+			break;
+
+		case 5:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			objList.insert(3, obj3);
+			objList.insert(4, obj4);
+			break;
+
+		case 6:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			objList.insert(3, obj3);
+			objList.insert(4, obj4);
+			objList.insert(5, obj5);
+			break;
+
+		case 7:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			objList.insert(3, obj3);
+			objList.insert(4, obj4);
+			objList.insert(5, obj5);
+			objList.insert(6, obj6);
+			break;
+
+		case 8:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			objList.insert(3, obj3);
+			objList.insert(4, obj4);
+			objList.insert(5, obj5);
+			objList.insert(6, obj6);
+			objList.insert(7, obj7);
+			break;
+
+		case 9:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			objList.insert(3, obj3);
+			objList.insert(4, obj4);
+			objList.insert(5, obj5);
+			objList.insert(6, obj6);
+			objList.insert(7, obj7);
+			objList.insert(8, obj8);
+			break;
+
+		case 10:
+			objList.insert(0, obj);
+			objList.insert(1, obj1);
+			objList.insert(2, obj2);
+			objList.insert(3, obj3);
+			objList.insert(4, obj4);
+			objList.insert(5, obj5);
+			objList.insert(6, obj6);
+			objList.insert(7, obj7);
+			objList.insert(8, obj8);
+			objList.insert(9, obj9);
+			break;
+		}
+
+
+	}
+};
+
 /*******************************************************************************************************************************************/
 
 TEST_F(LinkedListIntTest, intial_insert_is_data_valid) {
