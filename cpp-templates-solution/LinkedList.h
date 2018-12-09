@@ -86,7 +86,6 @@ public:
 		if (size < index + 1) return;
 		if (head->next == nullptr || index == 0) {
 			if (size == 1) {
-				head == nullptr;
 				size--;
 				return;
 			}
