@@ -133,6 +133,11 @@ public:
 	Stuff result;
 	
 	Stuff obj, obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9;
+
+	Stuff tempObj = Stuff(23, "Goodbye!", 55.777);
+	int intResult = 23;
+	double doubleResult = 55.777;
+	std::string strResult = "Goodbye!";
 	
 	void insObj(int n) {
 		switch (n) {
@@ -229,7 +234,6 @@ public:
 /*******************************************************************************************************************************************/
 
 TEST_F(LinkedListIntTest, intial_insert_is_data_valid) {
-	
 	result = 10;
 
 	intList.insert(0, 10);
@@ -238,7 +242,6 @@ TEST_F(LinkedListIntTest, intial_insert_is_data_valid) {
 }
 
 TEST_F(LinkedListIntTest, initial_insert_is_size_valid) {
-
 	result = 1;
 
 	intList.insert(0, 10);
@@ -495,14 +498,12 @@ TEST_F(LinkedListObjectTest, initial_insert_is_size_valid) {
 }
 
 TEST_F(LinkedListObjectTest, insert_100_is_obj_int_valid) {
-
 	for (int i = 0; i < 10; i++) insObj(10);
 
 	EXPECT_EQ((objList.get(99)).intStuff, result.intStuff);
 }
 
 TEST_F(LinkedListObjectTest, insert_100_is_obj_double_valid) {
-
 	for (int i = 0; i < 10; i++) insObj(10);
 
 	EXPECT_DOUBLE_EQ((objList.get(99)).doubleStuff, result.doubleStuff);
@@ -544,7 +545,6 @@ TEST_F(LinkedListObjectTest, size_is_zero_when_popping_last_obj_in_list) {
 }
 
 TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_int_valid) {
-
 	insObj(1);
 	objList.pop(0);
 	insObj(4);
@@ -553,7 +553,6 @@ TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_int_valid) {
 }
 
 TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_double_valid) {
-
 	insObj(1);
 	objList.pop(0);
 	insObj(4);
@@ -562,7 +561,6 @@ TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_double_valid) {
 }
 
 TEST_F(LinkedListObjectTest, pop_last_insert_again_is_obj_string_valid) {
-
 	insObj(1);
 	objList.pop(0);
 	insObj(4);
@@ -576,6 +574,70 @@ TEST_F(LinkedListObjectTest, pop_last_insert_again_is_size_valid) {
 	insObj(1);
 	objList.pop(0);
 	insObj(4);
+
+	EXPECT_EQ(objList.length(), size_result);
+}
+
+TEST_F(LinkedListObjectTest, insert_in_middle_of_list_is_obj_int_valid) {
+	insObj(10);
+	Stuff tempObj = Stuff(23, "Goodbye!", 55.777);
+	objList.insert(4, tempObj);
+
+	EXPECT_EQ((objList.get(4)).intStuff, intResult);
+}
+
+TEST_F(LinkedListObjectTest, insert_in_middle_of_list_is_obj_double_valid) {
+	insObj(10);
+	objList.insert(4, tempObj);
+
+	EXPECT_DOUBLE_EQ((objList.get(4)).doubleStuff, doubleResult);
+}
+
+TEST_F(LinkedListObjectTest, insert_in_middle_of_list_is_obj_string_valid) {
+	insObj(10);
+	objList.insert(4, tempObj);
+
+	EXPECT_EQ((objList.get(4)).stringStuff, strResult);
+}
+
+TEST_F(LinkedListObjectTest, insert_in_middle_of_list_is_size_valid) {
+	size_result = 10;
+
+	insObj(9);
+	objList.insert(4, obj);
+
+	EXPECT_EQ(objList.length(), size_result);
+}
+
+TEST_F(LinkedListObjectTest, pop_middle_of_list_is_obj_int_valid) {
+	insObj(8);
+	objList.insert(5, tempObj);
+	objList.pop(4);
+
+	EXPECT_EQ((objList.get(4)).intStuff, intResult);
+}
+
+TEST_F(LinkedListObjectTest, pop_middle_of_list_is_obj_double_valid) {
+	insObj(8);
+	objList.insert(5, tempObj);
+	objList.pop(4);
+
+	EXPECT_DOUBLE_EQ((objList.get(4)).doubleStuff, doubleResult);
+}
+
+TEST_F(LinkedListObjectTest, pop_middle_of_list_is_obj_string_valid) {
+	insObj(8);
+	objList.insert(5, tempObj);
+	objList.pop(4);
+
+	EXPECT_EQ((objList.get(4)).stringStuff, strResult);
+}
+
+TEST_F(LinkedListObjectTest, pop_middle_of_list_is_size_valid) {
+	size_result = 8;
+
+	insObj(9);
+	objList.pop(4);
 
 	EXPECT_EQ(objList.length(), size_result);
 }

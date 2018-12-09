@@ -13,5 +13,10 @@ public:
 		stringStuff = "Hello";
 		doubleStuff = 28.124;
 	}
+	Stuff(int n, std::string s, double d) {
+		this->intStuff = n;
+		this->doubleStuff = d;
+		this->stringStuff = s;
+	}
 	~Stuff() {}
 };
