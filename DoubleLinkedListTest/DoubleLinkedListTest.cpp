@@ -34,7 +34,7 @@ TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_pop)
 }
 
 
-TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_empty_and_add)
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_empty_and_add)
 {
 	int result;
 	List<int> intDll;
@@ -57,6 +57,107 @@ TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_empty_and_check_size)
 	EXPECT_EQ(0, result);
 }
 
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_when_pop_size_decrease)
+{
+	int result;
+	List<int> intDll;
+	for (int i = 0; i < 50; i++)
+	{
+		intDll.insert(i, i);
+	}
+	for (int i = 0; i < 30; i++)
+	{
+		intDll.pop(i);
+	}
+	result = intDll.getSize();
+	EXPECT_EQ(20, result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_when_add_after_pop_size_increase)
+{
+	int result;
+	List<int> intDll;
+	for (int i = 0; i < 50; i++)
+	{
+		intDll.insert(i, i);
+	}
+	for (int i = 0; i < 30; i++)
+	{
+		intDll.pop(i);
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		intDll.insert(i, i);
+	}
+	result = intDll.getSize();
+	EXPECT_EQ(30, result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_double_add_to_middle_check_size)
+{
+	double result;
+	List<double> doubleDll;
+	doubleDll.insert(0, 11.11);
+	doubleDll.insert(1, 12.22);
+	doubleDll.insert(2, 13.33);
+	doubleDll.insert(3, 14.44);
+
+	doubleDll.insert(2, 15.55);
+	result = doubleDll.getSize();
+	EXPECT_EQ(5, result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_double_add_to_middle_check_data)
+{
+	double result;
+	List<double> doubleDll;
+	doubleDll.insert(0, 11.11);
+	doubleDll.insert(1, 12.22);
+	doubleDll.insert(2, 13.33);
+	doubleDll.insert(3, 14.44);
+
+	doubleDll.insert(2, 15.55);
+	result = doubleDll.get(2);
+	EXPECT_EQ(15.55, result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_double_pop_middle_check_data)
+{
+	double result;
+	List<double> doubleDll;
+	doubleDll.insert(0, 11.11);
+	doubleDll.insert(1, 12.22);
+	doubleDll.insert(2, 13.33);
+	doubleDll.insert(3, 14.44);
+	doubleDll.insert(2, 15.55);
+	doubleDll.pop(2);
+	result = doubleDll.get(2);
+	EXPECT_EQ(13.33, result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_double_pop_middle_check_size)
+{
+	double result;
+	List<double> doubleDll;
+	doubleDll.insert(0, 11.11);
+	doubleDll.insert(1, 12.22);
+	doubleDll.insert(2, 13.33);
+	doubleDll.insert(3, 14.44);
+	doubleDll.insert(2, 15.55);
+	doubleDll.pop(2);
+	result = doubleDll.getSize();
+	EXPECT_EQ(4, result);
+}
+
+
+
+
 TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_check_size)
 {
 	int result;
@@ -68,6 +169,7 @@ TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_check_size)
 	result = stringDll.getSize();
 	EXPECT_EQ(100, result);
 }
+
 
 
 TEST(DoubleLinkedList_Test, Double_Linked_list_string_add_and_check_middle)
@@ -161,4 +263,29 @@ TEST(DoubleLinkedList_Test, Double_Linked_list_object_add_pop_add_check_last)
 	stuffObj.pop(0);
 	stuffObj.insert(2, stuff3);
 	EXPECT_EQ(stuffObj.get(2).stringStuff, result);
+}
+
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_object_add_pop_is_obj_double_valid)
+{
+	double result = 28.124;
+	List<Stuff> stuffObj;
+	Stuff stuff1;
+	Stuff stuff2;
+	stuffObj.insert(0, stuff1);
+	stuffObj.insert(1, stuff2);
+	stuffObj.pop(0);
+	EXPECT_EQ(stuffObj.get(0).doubleStuff, result);
+}
+
+TEST(DoubleLinkedList_Test, Double_Linked_list_object_add_pop_is_obj_int_valid)
+{
+	int result = 6732;
+	List<Stuff> stuffObj;
+	Stuff stuff1;
+	Stuff stuff2;
+	stuffObj.insert(0, stuff1);
+	stuffObj.insert(1, stuff2);
+	stuffObj.pop(0);
+	EXPECT_EQ(stuffObj.get(0).intStuff, result);
 }

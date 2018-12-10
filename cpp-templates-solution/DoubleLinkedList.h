@@ -66,6 +66,7 @@ void List<T>::insert(int index, T newData)
 	{
 		return;
 	}
+
 	Node *current = head, *prev = nullptr;
 	for (int i = 0; i < index; i++)
 	{
@@ -130,7 +131,7 @@ void List<T>::pop(int index)
 			return;
 		}
 		deleteNode->next = current->next;
-		current->next->prev = deleteNode;
+		current->next = deleteNode;
 		size--;
 		delete current;
 	}
