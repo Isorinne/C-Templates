@@ -79,16 +79,15 @@ public:
 	}
 
 	void pop(unsigned int index) {
-		Node * node = head;
-
 		if (size == 0 || size < index + 1) return;
 
-		else if (size == 1) { size--; return; }
+		if (size == 1) { size--; return; }
 
-		else if (head->next == nullptr || index == 0) {
-			while (node->next->next != nullptr) node = node->next;
-			delete(node->next);
-			node->next = nullptr;
+		Node * node = head;
+
+		if (head->next == nullptr || index == 0) {
+			head = head->next;
+			delete(node);
 		}
 
 		else if (size == index + 1) {
