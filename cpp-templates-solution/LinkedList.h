@@ -11,7 +11,7 @@ private:
 	};
 
 	Node * head;
-	unsigned int size = 0, i;
+	unsigned int size = 0, ctr, i;
 
 public:
 
@@ -33,7 +33,7 @@ public:
 
 	T get(unsigned int index) {
 		Node * temp = head;
-		unsigned int ctr = 0;
+		ctr = 0;
 
 		while (temp != nullptr) {
 			if (ctr == index) return temp->data;
@@ -61,7 +61,7 @@ public:
 		}
 
 		else {
-			int ctr = 0;
+			ctr = 0;
 			Node* prev = new Node;
 
 			while (ctr != index) {
