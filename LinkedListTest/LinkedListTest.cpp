@@ -233,15 +233,6 @@ public:
 
 /*******************************************************************************************************************************************/
 
-TEST_F(LinkedListIntTest, insert_2_pop_first_is_data_valid) {
-	result = 9999;
-	intList.insert(0, 5555);
-	intList.insert(1, 9999);
-	intList.pop(0);
-
-	EXPECT_EQ(intList.get(0), result);
-}
-
 TEST_F(LinkedListIntTest, intial_insert_is_data_valid) {
 	result = 10;
 
@@ -258,6 +249,23 @@ TEST_F(LinkedListIntTest, initial_insert_is_size_valid) {
 	EXPECT_EQ(intList.length(), result);
 }
 
+TEST_F(LinkedListIntTest, insert_2_pop_first_is_data_valid) {
+	result = 9999;
+	intList.insert(0, 5555);
+	intList.insert(1, 9999);
+	intList.pop(0);
+
+	EXPECT_EQ(intList.get(0), result);
+}
+
+TEST_F(LinkedListIntTest, insert_2_pop_last_is_data_valid) {
+	result = 5555;
+	intList.insert(0, 5555);
+	intList.insert(1, 9999);
+	intList.pop(1);
+
+	EXPECT_EQ(intList.get(0), result);
+}
 
 TEST_F(LinkedListIntTest, insert_100_is_sample_data_valid) {
 	result = 1001, result2 = 1023, result3 = 1042, result4 = 1076, result5 = 1099;
@@ -384,6 +392,15 @@ TEST_F(LinkedListStringTest, insert_2_pop_first_is_data_valid) {
 	strList.insert(0, "Hello World!");
 	strList.insert(1, "Hello Again!");
 	strList.pop(0);
+
+	EXPECT_EQ(strList.get(0), result);
+}
+
+TEST_F(LinkedListStringTest, insert_2_pop_last_is_data_valid) {
+	result = "Hello World!";
+	strList.insert(0, "Hello World!");
+	strList.insert(1, "Hello Again!");
+	strList.pop(1);
 
 	EXPECT_EQ(strList.get(0), result);
 }
@@ -534,6 +551,30 @@ TEST_F(LinkedListObjectTest, insert_2_pop_first_is_obj_string_valid) {
 	objList.insert(0, obj);
 	objList.insert(1, tempObj);
 	objList.pop(0);
+
+	EXPECT_EQ((objList.get(0)).stringStuff, strResult);
+}
+
+TEST_F(LinkedListObjectTest, insert_2_pop_last_is_obj_int_valid) {
+	objList.insert(0, tempObj);
+	objList.insert(1, obj);
+	objList.pop(1);
+
+	EXPECT_EQ((objList.get(0)).intStuff, intResult);
+}
+
+TEST_F(LinkedListObjectTest, insert_2_pop_last_is_obj_double_valid) {
+	objList.insert(0, tempObj);
+	objList.insert(1, obj);
+	objList.pop(1);
+
+	EXPECT_DOUBLE_EQ((objList.get(0)).doubleStuff, doubleResult);
+}
+
+TEST_F(LinkedListObjectTest, insert_2_pop_last_is_obj_string_valid) {
+	objList.insert(0, tempObj);
+	objList.insert(1, obj);
+	objList.pop(1);
 
 	EXPECT_EQ((objList.get(0)).stringStuff, strResult);
 }

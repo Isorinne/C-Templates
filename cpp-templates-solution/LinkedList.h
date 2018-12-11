@@ -91,8 +91,11 @@ public:
 		}
 
 		else if (size == index + 1) {
-			head = head->next;
-			delete(node);
+			while (node->next->next != nullptr)
+				node = node->next;
+
+			delete(node->next);
+			node->next = nullptr;
 		}
 
 		else {
