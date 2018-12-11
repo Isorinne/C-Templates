@@ -47,34 +47,35 @@ public:
 		return size;
 	}
 
-	void insert(unsigned int index, T data) {
-		Node * temp = head;
-		Node * node = new Node;
+	void insert(int index, T data)
+	{
+		Node* temp = head;
+		Node* node = new Node;
 		node->data = data;
+		node->next = nullptr;
 
-		if (head == nullptr || index == 0) {
-			node->next = head;
+		if (index == 0) {
 			head = node;
-		}
-
-		else if (size == index + 1) {
-			while (temp->next != nullptr) temp = temp->next;
-
-			node->next = nullptr;
-			temp->next = node;
+			head->next = temp;
+			size++;
 		}
 
 		else {
-			Node * prev = new Node;
-			for (i = 0; i < index; i++) {
-				prev = temp;
+			int ctr = 0;
+			Node* prev = new Node;
+
+			while (ctr != index) {
+				if (ctr == (index - 1)) {
+					prev = temp;
+				}
 				temp = temp->next;
+				ctr++;
 			}
 
 			prev->next = node;
 			node->next = temp;
+			size++;
 		}
-		size++;
 	}
 
 	void pop(unsigned int index) {
