@@ -726,13 +726,13 @@ TEST_F(LinkedListObjectTest, pop_middle_of_list_is_size_valid) {
 	EXPECT_EQ(objList.length(), size_result);
 }
 
-TEST(LinkedListExtraTest, pop_empty_is_size_zero) {
+TEST(LinkedListSizeZeroTest, pop_empty_is_size_zero) {
 	LinkedList<int> ll;
 	
-	size_t result;
+	size_t result = 0;
 
 	ll.pop(0);
-	result = ll.length();
-	EXPECT_EQ(0, result);
+	
+	EXPECT_EQ(ll.length(), result);
 	
 }
