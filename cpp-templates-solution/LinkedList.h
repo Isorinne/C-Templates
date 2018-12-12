@@ -20,26 +20,28 @@ public:
 	}
 
 	~LinkedList() {
-		Node * curr = nullptr;
 		if (this->head == nullptr) return;
+
+		Node * current = nullptr;
+
 		while (head->next != nullptr) {
-			curr = head->next;
+			current = head->next;
 			head->next = head->next->next;
-			delete(curr);
+			delete current ;
 		}
 
-		delete(head);
+		delete head;
 	}
 
 	T get(unsigned int index) {
-		Node * temp = head;
-		unsigned int ctr = 0;
+		Node * temp_head = head;
+		unsigned int counter = 0;
 
-		while (temp != nullptr) {
-			if (ctr == index) return temp->data;
+		while (temp_head != nullptr) {
+			if (counter == index) return temp_head->data;
 
-			ctr++;
-			temp = temp->next;
+			counter++;
+			temp_head = temp_head->next;
 		}
 	}
 
@@ -49,35 +51,34 @@ public:
 
 	void insert(unsigned int index, T data) {
 		if (size < index) return;
-		Node* temp = head;
-		Node* node = new Node;
-		node->data = data;
-		node->next = nullptr;
+
+		Node* temp_head = head;
+		Node* new_node = new Node;
+		new_node->data = data;
+		new_node->next = nullptr;
 
 		if (index == 0) {
-			head = node;
-			head->next = temp;
-			size++;
-			return;
+			head = new_node;
+			head->next = temp_head;
 		}
 
 		else {
-			unsigned int ctr = 0;
-			Node* prev = new Node;
+			unsigned int counter = 0;
+			Node* temp_ptr = nullptr;
 
-			while (ctr != index) {
-				if (ctr == (index - 1)) {
-					prev = temp;
+			while (counter != index) {
+				if (counter == (index - 1)) {
+					temp_ptr = temp_head;
 				}
-				temp = temp->next;
-				ctr++;
+				temp_head = temp_head->next;
+				counter++;
 			}
 
-			prev->next = node;
-			node->next = temp;
-			size++;
-			return;
+			temp_ptr->next = new_node;
+			new_node->next = temp_head;
 		}
+		size++;
+		return;
 	}
 
 	void pop(unsigned int index) {
@@ -85,31 +86,30 @@ public:
 
 		if (size == 1) { size--; return; }
 
-		Node * node = head;
+		Node * temp_head = head;
 
 		if (head->next == nullptr || index == 0) {
 			head = head->next;
-			delete(node);
+			delete temp_head;
 		}
 
 		else if (size == index + 1) {
-			while (node->next->next != nullptr)
-				node = node->next;
+			while (temp_head->next->next != nullptr)
+				temp_head = temp_head->next;
 
-			delete(node->next);
-			node->next = nullptr;
+			delete temp_head->next ;
+			temp_head->next = nullptr;
 		}
 
 		else {
-			Node * temp = new Node;
+			Node * temp_ptr = nullptr;
 			for (unsigned int i = 0; i < index; i++) {
-				temp = node;
-				node = node->next;
+				temp_ptr = temp_head;
+				temp_head = temp_head->next;
 			}
-			temp->next = temp->next->next;
-			delete(node);
+			temp_ptr->next = temp_ptr->next->next;
+			delete temp_head;
 		}
 		size--;
-		return;
 	}
 };
