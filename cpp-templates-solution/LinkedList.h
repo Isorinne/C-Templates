@@ -48,6 +48,7 @@ public:
 	}
 
 	void insert(unsigned int index, T data) {
+		if (size < index) return;
 		Node* temp = head;
 		Node* node = new Node;
 		node->data = data;
