@@ -57,6 +57,15 @@ TEST(DoubleLinkedList_Test, Double_Linked_list_int_add_and_empty_and_check_size)
 	EXPECT_EQ(0, result);
 }
 
+TEST(DoubleLinkedList_Test, Double_Linked_list_int_pop_and_check_size)
+{
+	int result;
+	List<int> intDll;
+	intDll.pop(0);
+	result = intDll.getSize();
+	EXPECT_EQ(0, result);
+}
+
 
 TEST(DoubleLinkedList_Test, Double_Linked_list_int_when_pop_size_decrease)
 {
