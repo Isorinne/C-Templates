@@ -34,15 +34,15 @@ public:
 	}
 
 	T get(unsigned int index) {
-		Node * temp_head = head;
+		Node * current = head;
 		unsigned int counter = 0;
 
-		while (temp_head != nullptr) {
+		while (current != nullptr) {
 			if (counter == index)
-				return temp_head->data;
+				return current->data;
 
 			counter++;
-			temp_head = temp_head->next;
+			current = current->next;
 		}
 	}
 
@@ -53,30 +53,30 @@ public:
 	void insert(unsigned int index, T data) {
 		if (size < index) return;
 
-		Node* temp_head = head;
-		Node* new_node = new Node;
+		Node * current = head;
+		Node * new_node = new Node;
 		new_node->data = data;
 		new_node->next = nullptr;
 
 		if (index == 0) {
 			head = new_node;
-			head->next = temp_head;
+			head->next = current;
 		}
 
 		else {
 			unsigned int counter = 0;
-			Node* temp_ptr = nullptr;
+			Node * temp_node = nullptr;
 
 			while (counter != index) {
 				if (counter == (index - 1))
-					temp_ptr = temp_head;
+					temp_node = current;
 			
-				temp_head = temp_head->next;
+				current = current->next;
 				counter++;
 			}
 
-			temp_ptr->next = new_node;
-			new_node->next = temp_head;
+			temp_node->next = new_node;
+			new_node->next = current;
 		}
 		size++;
 		return;
@@ -87,29 +87,29 @@ public:
 
 		if (size == 1) { size--; return; }
 
-		Node * temp_head = head;
+		Node * current = head;
 
 		if (head->next == nullptr || index == 0) {
 			head = head->next;
-			delete temp_head;
+			delete current;
 		}
 
 		else if (size == index + 1) {
-			while (temp_head->next->next != nullptr)
-				temp_head = temp_head->next;
+			while (current->next->next != nullptr)
+				current = current->next;
 
-			delete temp_head->next ;
-			temp_head->next = nullptr;
+			delete current->next ;
+			current->next = nullptr;
 		}
 
 		else {
-			Node * temp_ptr = nullptr;
+			Node * temp_node = nullptr;
 			for (unsigned int i = 0; i < index; i++) {
-				temp_ptr = temp_head;
-				temp_head = temp_head->next;
+				temp_node = current;
+				current = current->next;
 			}
-			temp_ptr->next = temp_ptr->next->next;
-			delete temp_head;
+			temp_node->next = temp_node->next->next;
+			delete current;
 		}
 		size--;
 	}
