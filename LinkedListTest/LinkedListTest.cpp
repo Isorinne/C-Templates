@@ -11,6 +11,7 @@ public:
 
 	LinkedList<int> intList;
 	int result, result2, result3, result4, result5;
+	size_t size_result;
 
 	void insInt(int n) {
 		for (int i = 0; i < n; i++)
@@ -27,7 +28,7 @@ public:
 
 	LinkedList<std::string> strList;
 	std::string result, result2, result3;
-	int size_result;
+	size_t size_result;
 
 	void insStr(int n) {
 		switch (n) {
@@ -127,7 +128,7 @@ public:
 	void TearDown() {}
 	~LinkedListObjectTest() {}
 
-	int size_result;
+	size_t size_result;
 
 	LinkedList<Stuff> objList;
 	Stuff result;
@@ -248,6 +249,7 @@ TEST_F(LinkedListIntTest, initial_insert_is_size_valid) {
 
 	EXPECT_EQ(intList.length(), result);
 }
+
 
 TEST_F(LinkedListIntTest, insert_2_pop_first_is_data_valid) {
 	result = 9999;
@@ -722,4 +724,15 @@ TEST_F(LinkedListObjectTest, pop_middle_of_list_is_size_valid) {
 	objList.pop(4);
 
 	EXPECT_EQ(objList.length(), size_result);
+}
+
+TEST(LinkedListExtraTest, pop_empty_is_size_zero) {
+	LinkedList<int> ll;
+	
+	size_t result;
+
+	ll.pop(0);
+	result = ll.length();
+	EXPECT_EQ(0, result);
+	
 }

@@ -21,7 +21,7 @@ public:
 
 	~LinkedList() {
 		Node * curr = nullptr;
-
+		if (this->head == nullptr) return;
 		while (head->next != nullptr) {
 			curr = head->next;
 			head->next = head->next->next;
