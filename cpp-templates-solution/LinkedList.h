@@ -109,5 +109,6 @@ public:
 			delete(node);
 		}
 		size--;
+		return;
 	}
 };
