@@ -38,7 +38,8 @@ public:
 		unsigned int counter = 0;
 
 		while (temp_head != nullptr) {
-			if (counter == index) return temp_head->data;
+			if (counter == index)
+				return temp_head->data;
 
 			counter++;
 			temp_head = temp_head->next;
@@ -67,9 +68,9 @@ public:
 			Node* temp_ptr = nullptr;
 
 			while (counter != index) {
-				if (counter == (index - 1)) {
+				if (counter == (index - 1))
 					temp_ptr = temp_head;
-				}
+			
 				temp_head = temp_head->next;
 				counter++;
 			}
