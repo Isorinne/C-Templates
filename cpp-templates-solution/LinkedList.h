@@ -11,7 +11,7 @@ private:
 	};
 
 	Node * head;
-	unsigned int size = 0;
+	size_t size = 0;
 
 public:
 
@@ -47,8 +47,7 @@ public:
 		return size;
 	}
 
-	void insert(int index, T data)
-	{
+	void insert(unsigned int index, T data) {
 		Node* temp = head;
 		Node* node = new Node;
 		node->data = data;
@@ -58,6 +57,7 @@ public:
 			head = node;
 			head->next = temp;
 			size++;
+			return;
 		}
 
 		else {
@@ -75,6 +75,7 @@ public:
 			prev->next = node;
 			node->next = temp;
 			size++;
+			return;
 		}
 	}
 
